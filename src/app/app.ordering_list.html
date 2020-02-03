@@ -1,0 +1,149 @@
+<div [ngClass]="'container'">
+  <section>
+    <form #orderingForm="ngForm">
+      <div [ngClass]="'main_content card'">
+          <div [ngClass]="'header rounded-circle card-header'">
+            <h1 [ngClass]="'display-3 font-weight-bold'"><span><em>{{title}}</em></span></h1>
+          </div>
+          <div [ngClass]="'firstName label'">
+                <span>First Name:</span>
+          </div>
+          <div [ngClass]="'txtFirstName'">
+            <input type="text" [ngClass]="'text'" minlength="3" pattern="[a-zA-Z'-]+" placeholder="First name" [(ngModel)]="firstName" name="fFirstName" #fFirstName="ngModel">
+          </div>
+          <div *ngIf="fFirstName.errors && (fFirstName.dirty || fFirstName.touched)" class="txtFirstNameAlert alert alert-danger">
+            <div [hidden]="!fFirstName.errors.minlength">
+              Title must be at least 3 characters long.
+            </div>
+            <div [hidden]="!fFirstName.errors.pattern">
+              This field only accepts letters, apostrophes or hypens.
+            </div>
+          </div>
+          <div [ngClass]="'lastName label'">
+                <span>Last Name:</span>
+          </div>
+          <div [ngClass]="'txtLastName'">
+            <input type="text" [ngClass]="'text'" minlength="3" pattern="[a-zA-Z'-]+" placeholder="Last name" [(ngModel)]="lastName" name="fLastName" #fLastName="ngModel">
+          </div>
+          <div *ngIf="fLastName.errors && (fLastName.dirty || fLastName.touched)" class="txtLastNameAlert alert alert-danger">
+            <div [hidden]="!fLastName.errors.minlength">
+              Title must be at least 3 characters long.
+            </div>
+            <div [hidden]="!fLastName.errors.pattern">
+              This field only accepts letters, apostrophes or hypens.
+            </div>
+          </div>
+          <div [ngClass]="'address label'">
+                <span>Street Address:</span>
+          </div>
+          <div [ngClass]="'txtAddress'">
+            <input type="text" [ngClass]="'text'" required placeholder="Address" [(ngModel)]="address" name="fAddress" #fAddress="ngModel">
+          </div>
+          <div *ngIf="fAddress.errors && (fAddress.dirty || fAddress.touched)" class="txtAddressAlert alert alert-danger">
+            <div [hidden]="!fAddress.errors.required">
+              Address is required.
+            </div>
+          </div>
+          <div [ngClass]="'addressButton'">
+            <button  [disabled]="showAddress" type="button" (click)="onsubmitAddress(orderingForm)" [ngClass]="'btn btn-primary '">Submit Address</button>
+          </div>
+          <div [hidden]="addressMessage == ''" [ngClass]="'addressMessage alert alert-danger'">
+              <span>{{ addressMessage }}</span>
+          </div>
+          <div [ngClass]="'listItemsButton'">
+            <button type="button" [disabled]="!showAddress" [ngClass]="'btn btn-primary'" (click)="addItem()">Add Item</button>
+          </div>
+          <div [ngClass]="'listItems'">
+            <select [ngClass]="'selectListItemns custom-select'" name="listFruit" #listFruit="ngModel"  [(ngModel)]="selectedFruit">
+              <option  *ngFor="let f of fruits; let idx= index" [ngValue]="idx">{{ f.fruit }}</option>
+            </select>
+          </div>
+          <div [ngClass]="'qtyItemns label'">
+            <span>Qty:</span>
+          </div>
+          <div [ngClass]="'txtQtyItemns'">
+            <input type="text" [ngClass]="'text w-25'" pattern="\d+" [(ngModel)]="quantity" name="fQuantity" #fQuantity="ngModel">
+            <div *ngIf="fQuantity.errors && (fQuantity.dirty || fQuantity.touched)" class="txtLastNameAlert alert alert-danger">
+              <div [hidden]="!fQuantity.errors.pattern">
+                This field only accepts numbers.
+              </div>
+            </div>
+          </div>
+          <div [ngClass]="'gridProducts'">
+            <div [ngClass]="'gridProductsMain'">
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span>
+                  <strong>Qty</strong>
+                </span>
+                <span>
+                  <strong>Unit Price</strong>
+                </span>
+                <span>
+                  <strong>Amount</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <ng-container *ngFor=" let item of items; let idx = index">
+                  <span [ngClass]="'text-info'">{{ item.fruit }}</span>
+                  <span [ngClass]="'text-info'">{{ item.quantity }}</span>
+                  <span [ngClass]="'text-info'">{{ item.value }}</span>
+                  <span [ngClass]="'text-info'">{{ item.amount }}</span>
+                  <span><input [ngClass]="'btn btn-danger'" type='button' value='delete' (click)=removeItem(item)></span>
+                 </ng-container>
+                 <span [ngClass]="'text-success'">
+                  <strong>SubTotal:</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span [ngClass]="'text-danger'">
+                  <strong>{{ subTotal.toFixed(2) }}</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span [ngClass]="'text-success'">
+                  <strong>Taxes 7%:</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span [ngClass]="'text-danger'">
+                  <strong>{{ taxes.toFixed(2) }}</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span [ngClass]="'text-success'">
+                  <strong>Total:</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+                <span [ngClass]="'text-danger'">
+                  <strong>{{ total.toFixed(2) }}</strong>
+                </span>
+                <span>
+                  <strong>&nbsp;</strong>
+                </span>
+            </div>
+          </div>
+          <div [hidden]="!showAddress" [ngClass]="'gridAddress p-3 mb-2 bg-info text-white'">
+            <label>Order for {{ firstName }} {{ lastName }} at {{ address }}</label>
+          </div>
+      </div>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,181 @@
+.main_content{
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    grid-template-rows: repeat(9, auto);
+    align-items: center;
+    padding-top: 0.2in;
+    padding-bottom: 0.2in;
+    margin-top: 0.5in;
+    margin-bottom: 0.5in;
+    grid-gap: 1em 1em;
+}
+
+/*Lines*/
+.header{
+    grid-row: 1;
+    grid-column: 1 / -1;
+    justify-items: stretch;
+    text-align: center;
+}
+
+.firstName{
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.txtFirstName{
+    grid-row: 2;
+    grid-column: 4 /span 2;
+}
+
+.txtFirstNameAlert{
+    grid-row: 2;
+    grid-column: 6 /span 3;
+}
+
+
+.lastName{
+    grid-row:3;
+    grid-column: 3;
+
+}
+
+.txtLastName{
+    grid-row: 3;
+    grid-column: 4 /span 2;
+}
+
+.txtLastNameAlert{
+    grid-row: 3;
+    grid-column: 6 /span 3;
+}
+
+.address{
+    grid-row: 4;
+    grid-column: 3;
+}
+
+.txtAddress{
+    grid-row: 4;    
+    grid-column: 4 /span 2;
+}
+
+.txtAddressAlert{
+    grid-row: 4;
+    grid-column: 6 /span 3;
+}
+
+.addressButton{
+    grid-row: 5;
+    grid-column: 3;
+    justify-self: center;
+}
+
+.addressMessage{
+    grid-row: 5;
+    grid-column: 4/  span 3;
+    justify-self: center;
+}
+
+.listItemsButton{
+    grid-row: 6;
+    grid-column: 2/  span 2;
+    justify-self: right;
+    margin-right: 0.1in;
+}
+
+.listItems{
+    grid-row: 6;
+    grid-column:4/ span 2;
+}
+
+.selectListItemns{
+    margin-top: 0.1in;
+    height: 100%;
+    width: 100%;
+}
+
+.qtyItemns{
+    grid-row: 6;
+    grid-column:6;
+}
+
+.txtQtyItemns{
+    grid-row: 6;
+    grid-column: 7;
+}
+
+
+/*rows*/
+.label{
+    justify-self: end;
+    text-align: center;
+}
+
+.value{
+    justify-content: right;
+    align-items: right;
+    text-align: right;
+}
+
+.text{
+    justify-self: left;
+    margin-left: 0.25in;
+}
+
+/*Grid Products*/
+.gridProducts{
+    grid-row: 8;
+    grid-column: 2 / span 6;
+}
+
+.gridProductsMain{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+    
+}
+
+.gridProductsMain > span{
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black !important;
+}
+
+.gridProductsMain > span.totalOpen{
+    padding: 8px 4px;
+    border-left: 1px solid black;
+    border-bottom: 0 !important;
+}
+
+.gridProductsMain > span.totalClose{
+    padding: 8px 4px;
+    border-right: 0 !important;
+    border-top: 0 !important;
+}
+
+
+
+.menuGridProduct{
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+    width: 100%;
+}
+
+
+.gridAddress{
+    grid-row: 9;
+    grid-column: 1 /-1;
+    justify-items: stretch;
+    text-align: center;
+}
+
+
+.alert{
+    padding: 0 0 !important;
+    margin-top: 0.5rem;
+}
+
